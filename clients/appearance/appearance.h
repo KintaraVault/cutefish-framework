@@ -46,6 +46,18 @@ public:
     void setReduceTransparency(bool reduce);
     bool wallpaperTinting() const;
     void setWallpaperTinting(bool enabled);
+    double glassStrength() const;
+    void setGlassStrength(double strength);
+    int iconStyle() const;
+    void setIconStyle(int style);
+    int iconTone() const;
+    void setIconTone(int tone);
+    int folderColor() const;
+    void setFolderColor(int color);
+    int iconTint() const;
+    void setIconTint(int color);
+    int textHighlight() const;
+    void setTextHighlight(int color);
     // The title bar controls as red, yellow and green dots instead of plates.
     bool coloredWindowControls() const;
     void setColoredWindowControls(bool colored);

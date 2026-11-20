@@ -26,7 +26,9 @@ Appearance::Appearance()
     }
     for (const char* member : {"darkModeChanged", "darkModeScheduleChanged", "wallpaperChanged",
                                "userWallpapersChanged", "wallpaperFoldersChanged", "continuousCornersChanged",
-                               "reduceTransparencyChanged", "wallpaperTintingChanged",
+                                "reduceTransparencyChanged", "wallpaperTintingChanged",
+                                "glassStrengthChanged", "iconStyleChanged", "iconToneChanged",
+                                "folderColorChanged", "iconTintChanged", "textHighlightChanged",
                                "coloredWindowControlsChanged", "accentColorChanged", "backgroundTypeChanged",
                                "backgroundColorChanged", "cursorThemeChanged", "cursorSizeChanged",
                                "iconThemeChanged", "systemFontPointSizeChanged", "systemFontChanged"}) {
@@ -124,6 +126,66 @@ void Appearance::setWallpaperTinting(bool enabled)
     m_service.send("setWallpaperTinting", enabled);
 }
 
+double Appearance::glassStrength() const
+{
+    return value<double>("glassStrength", 0.5);
+}
+
+void Appearance::setGlassStrength(double strength)
+{
+    m_service.send("setGlassStrength", strength);
+}
+
+int Appearance::iconStyle() const
+{
+    return value<int32_t>("iconStyle", 0);
+}
+
+void Appearance::setIconStyle(int style)
+{
+    m_service.send("setIconStyle", int32_t(style));
+}
+
+int Appearance::iconTone() const
+{
+    return value<int32_t>("iconTone", 2);
+}
+
+void Appearance::setIconTone(int tone)
+{
+    m_service.send("setIconTone", int32_t(tone));
+}
+
+int Appearance::folderColor() const
+{
+    return value<int32_t>("folderColor", 0);
+}
+
+void Appearance::setFolderColor(int color)
+{
+    m_service.send("setFolderColor", int32_t(color));
+}
+
+int Appearance::iconTint() const
+{
+    return value<int32_t>("iconTint", 0);
+}
+
+void Appearance::setIconTint(int color)
+{
+    m_service.send("setIconTint", int32_t(color));
+}
+
+int Appearance::textHighlight() const
+{
+    return value<int32_t>("textHighlight", 0);
+}
+
+void Appearance::setTextHighlight(int color)
+{
+    m_service.send("setTextHighlight", int32_t(color));
+}
+
 bool Appearance::coloredWindowControls() const
 {
     return value<bool>("coloredWindowControls", true);
@@ -136,7 +198,7 @@ void Appearance::setColoredWindowControls(bool colored)
 
 int Appearance::accentColor() const
 {
-    return value<int32_t>("accentColor", 0);
+    return value<int32_t>("accentColor", -1);
 }
 
 void Appearance::setAccentColor(int index)
