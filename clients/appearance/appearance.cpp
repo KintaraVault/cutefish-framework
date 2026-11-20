@@ -26,7 +26,8 @@ Appearance::Appearance()
     }
     for (const char* member : {"darkModeChanged", "darkModeScheduleChanged", "wallpaperChanged",
                                "userWallpapersChanged", "wallpaperFoldersChanged", "continuousCornersChanged",
-                               "reduceTransparencyChanged", "coloredWindowControlsChanged", "accentColorChanged", "backgroundTypeChanged",
+                               "reduceTransparencyChanged", "wallpaperTintingChanged",
+                               "coloredWindowControlsChanged", "accentColorChanged", "backgroundTypeChanged",
                                "backgroundColorChanged", "cursorThemeChanged", "cursorSizeChanged",
                                "iconThemeChanged", "systemFontPointSizeChanged", "systemFontChanged"}) {
         m_matches.push_back(m_service.onSignal(member, [this](const dbus::Message&) { reload(); }));
@@ -113,9 +114,19 @@ void Appearance::setReduceTransparency(bool reduce)
     m_service.send("setReduceTransparency", reduce);
 }
 
+bool Appearance::wallpaperTinting() const
+{
+    return value<bool>("wallpaperTinting", true);
+}
+
+void Appearance::setWallpaperTinting(bool enabled)
+{
+    m_service.send("setWallpaperTinting", enabled);
+}
+
 bool Appearance::coloredWindowControls() const
 {
-    return value<bool>("coloredWindowControls", false);
+    return value<bool>("coloredWindowControls", true);
 }
 
 void Appearance::setColoredWindowControls(bool colored)

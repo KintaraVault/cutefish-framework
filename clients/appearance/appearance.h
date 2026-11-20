@@ -44,6 +44,8 @@ public:
     // Blurs and glass over an opaque colour instead of what is behind them.
     bool reduceTransparency() const;
     void setReduceTransparency(bool reduce);
+    bool wallpaperTinting() const;
+    void setWallpaperTinting(bool enabled);
     // The title bar controls as red, yellow and green dots instead of plates.
     bool coloredWindowControls() const;
     void setColoredWindowControls(bool colored);
